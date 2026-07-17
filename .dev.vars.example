@@ -1,0 +1,2 @@
+# Local development variables for wrangler-based preview
+# Copy to .dev.vars and fill values if your app needs secrets.

@@ -1,0 +1,30 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "main": ".open-next/worker.js",
+  "name": "mangamarketplace-net",
+  "compatibility_date": "2026-07-17",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "mangamarketplace-net"
+    }
+  ],
+  "routes": [
+    {
+      "pattern": "mangamarketplace.net",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.mangamarketplace.net",
+      "custom_domain": true
+    }
+  ],
+  "images": {
+    "binding": "IMAGES"
+  }
+}
