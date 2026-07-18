@@ -24,6 +24,24 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Verify the Cloudflare API token is valid and has sufficient permissions
+      # before running the full build + deploy.
+      #
+      # Required API token permissions:
+      #   Account > Workers Scripts > Edit
+      #   Zone    > Workers Routes  > Edit   (needed for custom_domain routes)
+      #   Zone    > Zone            > Read   (needed to look up the zone)
+      #
+      # To create or update the token:
+      #   https://dash.cloudflare.com/profile/api-tokens
+      # Then store the value in the repository secret CLOUDFLARE_API_TOKEN
+      # (Settings > Secrets and variables > Actions).
+      - name: Verify Cloudflare credentials
+        run: npx wrangler whoami
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
       - name: Deploy
         run: npm run deploy
         env:
