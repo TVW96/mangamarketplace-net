@@ -47,3 +47,24 @@ npm run deploy
 ```bash
 npm run cf-typegen
 ```
+
+## GitHub Pages deployment
+
+The app can also be published as a static export to GitHub Pages via the
+`.github/workflows/deploy-pages.yml` workflow, which runs automatically on
+pushes to `main` (or manually via `workflow_dispatch`).
+
+Static export mode is only enabled when the `GITHUB_PAGES` environment
+variable is set, so it does not affect the Cloudflare Worker build:
+
+```bash
+npm run build:pages
+```
+
+This generates a static site in `out/`, with `basePath`/`assetPrefix` set to
+`/mangamarketplace-net` to match the GitHub Pages project URL
+(`https://<owner>.github.io/mangamarketplace-net/`). To enable it:
+
+1. In the repository settings, under **Pages**, set the source to
+   **GitHub Actions**.
+2. Push to `main` or trigger the `Deploy to GitHub Pages` workflow manually.

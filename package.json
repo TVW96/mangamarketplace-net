@@ -8,6 +8,7 @@
     "build": "NEXT_PRIVATE_STANDALONE=true next build",
     "build:next": "NEXT_PRIVATE_STANDALONE=true next build",
     "build:worker": "npm run clean:build && NEXT_PRIVATE_STANDALONE=true next build && opennextjs-cloudflare build --skipNextBuild",
+    "build:pages": "GITHUB_PAGES=true next build",
     "start": "next start",
     "lint": "eslint",
     "preview": "npm run build:worker && opennextjs-cloudflare preview",
