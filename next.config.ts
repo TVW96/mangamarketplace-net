@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
   ...(isGithubPages && {
     output: "export",
     basePath,
-    assetPrefix: `${basePath}/`,
+    assetPrefix: basePath,
     images: {
       unoptimized: true,
     },
